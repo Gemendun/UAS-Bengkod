@@ -111,9 +111,7 @@ class AuthController extends Controller
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'role' => 'pasien', // atau sesuai input
-        'no_ktp' => $request->no_ktp, // TAMBAHKAN BARIS INI
-        'no_rm' => $request->no_rm ?? 'RM-' . time(),
-]);
+    ]);
 
         // 2. Simpan ke tabel pasiens
         Pasien::create([
