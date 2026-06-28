@@ -41,17 +41,17 @@
               </div>
               <div class="form-group">
                 <label>Jam Mulai</label>
-                <input type="time" name="jam_mulai" class="form-control" required value="{{ $jadwal->jam_mulai }}">
+                <input type="time" name="jam_mulai" class="form-control" required value="{{ \Carbon\Carbon::parse($jadwal->jam_mulai)->format('H:i') }}">
               </div>
               <div class="form-group">
                 <label>Jam Selesai</label>
-                <input type="time" name="jam_selesai" class="form-control" required value="{{ $jadwal->jam_selesai }}">
+                <input type="time" name="jam_selesai" class="form-control" required value="{{ \Carbon\Carbon::parse($jadwal->jam_selesai)->format('H:i') }}">
               </div>
               <div class="form-group">
                 <label>Status Jadwal</label>
-                <select name="status" class="form-control" required>
-                  <option value="1" {{ $jadwal->status == 1 ? 'selected' : '' }}>Aktif</option>
-                  <option value="0" {{ $jadwal->status == 0 ? 'selected' : '' }}>Tidak Aktif</option>
+                <select name="is_aktif" class="form-control" required>
+                  <option value="1" {{ $jadwal->is_aktif == 1 ? 'selected' : '' }}>Aktif</option>
+                  <option value="0" {{ $jadwal->is_aktif == 0 ? 'selected' : '' }}>Tidak Aktif</option>
                 </select>
                 <small class="form-text text-muted">Hanya satu jadwal yang boleh aktif.</small>
               </div>

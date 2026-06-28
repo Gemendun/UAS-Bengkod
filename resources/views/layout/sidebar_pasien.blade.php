@@ -11,8 +11,8 @@
         <i class="nav-icon fas fa-notes-medical"></i><p>Daftar Periksa</p>
       </a>
     </li>
-    <li class="nav-item {{ request()->routeIs('periksa.detail') ? 'menu-open' : '' }}">
-      <a href="{{ route('periksaPasien') }}" class="nav-link {{ request()->routeIs('periksa.detail') ? 'active' : '' }}">
+    <li class="nav-item {{ request()->routeIs('riwayatPasien') || request()->routeIs('periksa.detail') ? 'menu-open' : '' }}">
+      <a href="{{ route('riwayatPasien') }}" class="nav-link {{ request()->routeIs('riwayatPasien') || request()->routeIs('periksa.detail') ? 'active' : '' }}">
         <i class="nav-icon fas fa-file-medical-alt"></i><p>Riwayat Periksa</p>
       </a>
     </li>

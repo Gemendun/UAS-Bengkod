@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pasien;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -23,10 +24,33 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $user = User::where('email', $credentials['email'])->first();
+        $passwordValid = false;
+
+        if ($user) {
+            $storedPassword = $user->getAttribute('password');
+
+            try {
+                $passwordValid = Hash::check($credentials['password'], $storedPassword);
+            } catch (\RuntimeException $e) {
+                $passwordValid = false;
+            }
+
+            if (!$passwordValid && $storedPassword === $credentials['password']) {
+                $passwordValid = true;
+            }
+        }
+
+        if ($passwordValid) {
+            if ($user->password !== $credentials['password']) {
+                $user->password = Hash::make($credentials['password']);
+                $user->save();
+            }
+
+            Auth::login($user, $request->boolean('remember'));
             $request->session()->regenerate();
 
-            $role = Auth::user()->role;
+            $role = $user->role;
             if ($role == 'dokter') {
                 return redirect()->route('dashboardDokter');
             } elseif ($role == 'pasien') {
@@ -79,14 +103,17 @@ class AuthController extends Controller
         $no_rm = $prefix . '-' . $urutan; // contoh: 202506-001
 
         // 1. Simpan ke tabel users
-        $user = User::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'pasien',
-        ]);
+       // Pastikan bagian ini menyertakan no_ktp
+    $user = User::create([
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+        'no_hp' => $request->no_hp,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => 'pasien', // atau sesuai input
+        'no_ktp' => $request->no_ktp, // TAMBAHKAN BARIS INI
+        'no_rm' => $request->no_rm ?? 'RM-' . time(),
+]);
 
         // 2. Simpan ke tabel pasiens
         Pasien::create([

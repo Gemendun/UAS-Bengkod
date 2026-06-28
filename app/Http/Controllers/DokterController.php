@@ -15,12 +15,20 @@ class DokterController extends Controller
 {
     // === Dashboard Dokter ===
     public function index()
-    {
-        $dokterId = Auth::user()->dokter->id;
+    
+{
+    // Menggunakan null-safe operator (?->) atau cek manual
+    $dokter = Auth::user()->dokter;
 
-        $totalSelesai = Periksa::whereHas('jadwal', function ($q) use ($dokterId) {
-            $q->where('dokter_id', $dokterId);
-        })->where('status', 'selesai')->count();
+    if (!$dokter) {
+        return redirect()->route('login')->with('error', 'Data profil dokter tidak ditemukan.');
+    }
+
+    $dokterId = $dokter->id;
+
+    $totalSelesai = Periksa::whereHas('jadwal', function ($q) use ($dokterId) {
+        $q->where('dokter_id', $dokterId);
+    })->where('status', 'selesai')->count();
 
         $totalBelum = Periksa::whereHas('jadwal', function ($q) use ($dokterId) {
             $q->where('dokter_id', $dokterId);

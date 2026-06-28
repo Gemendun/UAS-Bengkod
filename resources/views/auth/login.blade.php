@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Poliklinik | Log in</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Font: Instrument Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,10 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css') }}">
-    
     <!-- Vite Assets (Tailwind v4) -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     <style>
         body {

@@ -65,6 +65,7 @@ Route::middleware(['auth', 'role:pasien'])->group(function () {
     Route::get('/pasien/periksa', [PasienController::class, 'showPeriksa'])->name('periksaPasien');
     Route::post('/pasien/periksa', [PasienController::class, 'storePeriksa'])->name('storePeriksa');
     Route::get('/periksa/{id}/detail', [PasienController::class, 'showDetail'])->name('periksa.detail');
+    Route::get('/pasien/riwayat', [PasienController::class, 'riwayat'])->name('riwayatPasien');
 });
 
 

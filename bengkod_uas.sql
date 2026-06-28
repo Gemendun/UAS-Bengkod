@@ -338,8 +338,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nama`, `alamat`, `no_hp`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'Jl. Admin No.1', '081234567890', 'admin@example.com', '$2y$12$m4wXkC6KvlPll5vqetCvbOD4kwxMnwtZ3hHVlzj7U5B09iwwHgUna', 'admin', '2025-06-29 15:21:49', '2025-06-29 15:21:49'),
-(2, 'levi', 'semarang', '0806042005', 'levi@gmail.com', '$2y$12$nwKr8kDPbihsxBWj.fASYeTOcVYwfQ7fAkTwpyMnDwq9WAdebIUYG', 'dokter', '2025-06-29 15:23:54', '2025-06-29 15:23:54'),
-(3, 'messi', 'tegal', '072687341763', 'messi@example.com', '$2y$12$REH3UOL9VM3jr2xXVxOFo.lrwj1kHWN3M.yKLf71GIYr8krJyT/7O', 'pasien', '2025-06-29 15:24:30', '2025-06-29 15:24:30');
+(2, 'levi', 'semarang', '0806042005', 'dokter@gmail.com', '$2y$12$nwKr8kDPbihsxBWj.fASYeTOcVYwfQ7fAkTwpyMnDwq9WAdebIUYG', 'dokter', '2025-06-29 15:23:54', '2025-06-29 15:23:54'),
+(3, 'messi', 'tegal', '072687341763', 'pasien@gmail.com', '$2y$12$REH3UOL9VM3jr2xXVxOFo.lrwj1kHWN3M.yKLf71GIYr8krJyT/7O', 'pasien', '2025-06-29 15:24:30', '2025-06-29 15:24:30');
 
 --
 -- Indexes for dumped tables

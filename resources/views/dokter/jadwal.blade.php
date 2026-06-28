@@ -36,9 +36,15 @@
                 <label class="font-weight-bold" style="font-size:12px; color:#475569; text-transform:uppercase; letter-spacing:0.05em;">Jam Mulai</label>
                 <input type="time" name="jam_mulai" class="form-control" required>
               </div>
-              <div class="form-group mb-0">
+              <div class="form-group">
                 <label class="font-weight-bold" style="font-size:12px; color:#475569; text-transform:uppercase; letter-spacing:0.05em;">Jam Selesai</label>
                 <input type="time" name="jam_selesai" class="form-control" required>
+              </div>
+              <div class="form-group mb-0">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="is_aktif" name="is_aktif" value="1" checked>
+                  <label class="custom-control-label" for="is_aktif">Aktifkan langsung untuk pasien</label>
+                </div>
               </div>
             </div>
             <div class="card-footer">

@@ -35,7 +35,9 @@ class JadwalPeriksaController extends Controller
             return back()->withErrors(['Jadwal bentrok dengan jadwal lain.']);
         }
 
-        if ($request->has('is_aktif')) {
+        $isAktif = $request->has('is_aktif');
+
+        if ($isAktif) {
             JadwalPeriksa::where('dokter_id', $dokterId)->update(['is_aktif' => false]);
         }
 
@@ -44,7 +46,7 @@ class JadwalPeriksaController extends Controller
             'hari' => $request->hari,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
-            'is_aktif' => $request->has('is_aktif'),
+            'is_aktif' => $isAktif,
         ]);
 
         return back()->with('success', 'Jadwal berhasil ditambahkan.');
@@ -97,7 +99,9 @@ class JadwalPeriksaController extends Controller
             return back()->withErrors(['Jadwal bentrok dengan jadwal lain.']);
         }
 
-        if ($request->has('is_aktif')) {
+        $isAktif = $request->boolean('is_aktif', false);
+
+        if ($isAktif) {
             JadwalPeriksa::where('dokter_id', $dokterId)->update(['is_aktif' => false]);
         }
 
@@ -105,7 +109,7 @@ class JadwalPeriksaController extends Controller
             'hari' => $request->hari,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
-            'is_aktif' => $request->has('is_aktif'),
+            'is_aktif' => $isAktif,
         ]);
 
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');

@@ -21,13 +21,15 @@ class User extends Authenticatable
      * @var array<string>
      */
     protected $fillable = [
-        'nama',
-        'alamat',
-        'no_hp',
-        'role',
-        'email',
-        'password',
-    ];
+    'nama',
+    'email',
+    'password',
+    'alamat',
+    'no_hp',
+    'no_ktp', 
+    'no_rm',
+    'role',
+];
 
     /**
      * Kolom yang disembunyikan saat serialisasi.

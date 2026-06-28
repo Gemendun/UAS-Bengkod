@@ -103,4 +103,18 @@ class PasienController extends Controller
 
         return redirect()->route('periksaPasien')->with('success', 'Berhasil mendaftar! Nomor Antrian Anda: ' . $antrian);
     }
+
+    /**
+     * Tampilkan riwayat periksa yang sudah selesai
+     */
+    public function riwayat()
+    {
+        $riwayat = Periksa::with(['jadwal.dokter.user', 'jadwal.dokter.poli'])
+            ->where('id_pasien', Auth::id())
+            ->where('status', 'selesai')
+            ->orderByDesc('tgl_periksa')
+            ->get();
+
+        return view('pasien.riwayat', compact('riwayat'));
+    }
 }
